@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { ShoppingBag, ArrowRight, ShieldCheck } from 'lucide-react';
+import { ShoppingBag, ArrowRight, ShieldCheck, Eye, EyeOff } from 'lucide-react';
 
 export default function LoginPage() {
   const { login, isAdmin } = useAuth();
@@ -13,6 +13,7 @@ export default function LoginPage() {
   const [error, setError] = useState('');
   const [adminMode, setAdminMode] = useState(false);
   const [adminLoginPending, setAdminLoginPending] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
     if (adminLoginPending && isAdmin) navigate('/admin');
@@ -81,14 +82,25 @@ export default function LoginPage() {
 
           <div className="mb-6 flex flex-col gap-1.5">
             <label className="text-[13px] font-medium text-[var(--text-main)]">Password</label>
-            <input
-              type="password"
-              required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="••••••••"
-              className="w-full rounded-lg border border-[var(--border)] bg-[var(--surface)] px-3.5 py-2.5 text-sm text-[var(--text-main)] outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-blue-500/20"
-            />
+            <div className="relative">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="••••••••"
+                className="w-full rounded-lg border border-[var(--border)] bg-[var(--surface)] py-2.5 pl-3.5 pr-11 text-sm text-[var(--text-main)] outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-blue-500/20"
+              />
+              <button
+                type="button"
+                aria-label={showPassword ? 'Hide password' : 'Show password'}
+                aria-pressed={showPassword}
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-1/2 inline-flex -translate-y-1/2 items-center justify-center rounded text-[var(--text-secondary)] hover:text-[var(--text-main)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
+              >
+                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+              </button>
+            </div>
           </div>
 
           <button
