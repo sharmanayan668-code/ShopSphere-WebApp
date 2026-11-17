@@ -1,0 +1,14 @@
+node_modules/
+# Environment files; keep the example template trackable.
+.env
+.env.*
+!.env.example
+# Private key material.
+*.pem
+*.key
+*.p12
+*.pfx
+dist/
+build/
+.DS_Store
+*.log
