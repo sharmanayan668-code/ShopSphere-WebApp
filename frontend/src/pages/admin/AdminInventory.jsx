@@ -58,7 +58,7 @@ export default function AdminInventory() {
   const displayedItems = filterLowStock ? items.filter((i) => i.status === 'low_stock' || i.status === 'out_of_stock') : items;
 
   return (
-    <div>
+    <div className="min-w-0">
       <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-extrabold text-[var(--primary)]">Inventory & Audit Trail</h1>
@@ -81,10 +81,10 @@ export default function AdminInventory() {
       </div>
 
       {/* Inventory Table */}
-      <div className="mb-10 rounded-xl border border-[var(--border)] bg-[var(--surface)] p-4 shadow-sm sm:p-5">
+      <div className="mb-10 min-w-0 rounded-xl border border-[var(--border)] bg-[var(--surface)] p-4 shadow-sm sm:p-5">
         <h3 className="mb-4 text-base font-bold text-[var(--primary)]">Current Product Stock Overview</h3>
-        <div className="overflow-x-auto rounded-xl border border-[var(--border)] bg-white">
-          <table className="min-w-full border-collapse text-left text-sm">
+        <div className="w-full min-w-0 max-w-full overflow-x-auto rounded-xl border border-[var(--border)] bg-white">
+          <table className="w-full min-w-[760px] border-collapse text-left text-sm">
             <thead>
               <tr>
                 <th className="border-b border-[var(--border)] bg-[var(--surface-alt)] px-4 py-3 font-semibold text-[var(--text-secondary)]">Product</th>
@@ -132,12 +132,12 @@ export default function AdminInventory() {
       </div>
 
       {/* Movement Audit History */}
-      <div className="rounded-xl border border-[var(--border)] bg-[var(--surface)] p-4 shadow-sm sm:p-5">
-        <h3 className="mb-4 flex items-center gap-2 text-base font-bold text-[var(--primary)]">
+      <div className="min-w-0 rounded-xl border border-[var(--border)] bg-[var(--surface)] p-4 shadow-sm sm:p-5">
+        <h3 className="mb-4 flex flex-wrap items-center gap-2 text-base font-bold text-[var(--primary)]">
           <History size={18} /> Recent Stock Movement Logs (Audit Trail)
         </h3>
-        <div className="overflow-x-auto rounded-xl border border-[var(--border)] bg-white">
-          <table className="min-w-full border-collapse text-left text-sm">
+        <div className="w-full min-w-0 max-w-full overflow-x-auto rounded-xl border border-[var(--border)] bg-white">
+          <table className="w-full min-w-[800px] border-collapse text-left text-sm">
             <thead>
               <tr>
                 <th className="border-b border-[var(--border)] bg-[var(--surface-alt)] px-4 py-3 font-semibold text-[var(--text-secondary)]">Product</th>

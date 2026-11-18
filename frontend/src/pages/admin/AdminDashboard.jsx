@@ -25,7 +25,7 @@ export default function AdminDashboard() {
   if (!data) return <div className="py-12 text-center text-[var(--text-secondary)]">Failed to load analytics</div>;
 
   return (
-    <div>
+    <div className="min-w-0">
       <div className="mb-7">
         <h1 className="text-2xl font-extrabold text-[var(--primary)]">Business Analytics & Overview</h1>
         <p className="text-sm text-[var(--text-secondary)]">Real-time statistics derived directly from MongoDB records</p>
@@ -34,9 +34,9 @@ export default function AdminDashboard() {
       {/* Low Stock Warning Banner if any */}
       {data.lowStockCount > 0 && (
         <div className="mb-6 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-amber-300 bg-amber-50 px-4 py-4 text-amber-800 sm:px-5">
-          <div className="flex items-center gap-2.5">
+          <div className="flex min-w-0 items-center gap-2.5">
             <AlertTriangle size={20} />
-            <strong>{data.lowStockCount} products are running low on inventory!</strong>
+            <strong className="break-words">{data.lowStockCount} products are running low on inventory!</strong>
           </div>
           <Link to="/admin/inventory" className="inline-flex items-center justify-center rounded-lg bg-amber-500 px-3 py-1.5 text-[13px] font-medium text-white hover:bg-amber-600">
             Review Stock Now →
@@ -92,17 +92,17 @@ export default function AdminDashboard() {
       </div>
 
       {/* Recent Orders & Top Sellers */}
-      <div className="grid gap-6 lg:grid-cols-[2fr_1fr]">
+      <div className="grid min-w-0 grid-cols-1 gap-6 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
         
         {/* Recent Orders */}
-        <div className="rounded-xl border border-[var(--border)] bg-[var(--surface)] p-5 shadow-sm sm:p-6">
-          <div className="mb-[18px] flex items-center justify-between">
+        <div className="min-w-0 rounded-xl border border-[var(--border)] bg-[var(--surface)] p-5 shadow-sm sm:p-6">
+          <div className="mb-[18px] flex flex-wrap items-center justify-between gap-2">
             <h3 className="text-base font-bold text-[var(--primary)]">Recent Customer Orders</h3>
             <Link to="/admin/orders" className="text-[13px] font-semibold text-[var(--secondary)]">View All →</Link>
           </div>
 
-          <div className="overflow-x-auto rounded-xl border border-[var(--border)] bg-white">
-            <table className="min-w-full border-collapse text-left text-sm">
+          <div className="w-full min-w-0 max-w-full overflow-x-auto rounded-xl border border-[var(--border)] bg-white">
+            <table className="w-full min-w-[560px] border-collapse text-left text-sm">
               <thead>
                 <tr>
                   <th className="border-b border-[var(--border)] bg-[var(--surface-alt)] px-4 py-3 font-semibold text-[var(--text-secondary)]">Order No</th>
@@ -130,7 +130,7 @@ export default function AdminDashboard() {
         </div>
 
         {/* Top Products */}
-        <div className="rounded-xl border border-[var(--border)] bg-[var(--surface)] p-5 shadow-sm sm:p-6">
+        <div className="min-w-0 rounded-xl border border-[var(--border)] bg-[var(--surface)] p-5 shadow-sm sm:p-6">
           <h3 className="mb-[18px] text-base font-bold text-[var(--primary)]">Top Selling Items</h3>
           {data.topProducts?.length === 0 ? (
             <p className="text-[13px] text-[var(--text-secondary)]">Place demo orders to see real-time sales volume.</p>
@@ -138,11 +138,11 @@ export default function AdminDashboard() {
             <div className="flex flex-col gap-3.5">
               {data.topProducts.map((p, idx) => (
                 <div key={idx} className="flex items-center justify-between gap-3 border-b border-[var(--border)] pb-2 text-[13px]">
-                  <div>
-                    <strong>{p.name}</strong>
+                  <div className="min-w-0">
+                    <strong className="break-words">{p.name}</strong>
                     <div className="text-[var(--text-muted)]">{p.totalSold} units sold</div>
                   </div>
-                  <strong className="text-[var(--primary)]">₹{p.totalRevenue?.toLocaleString('en-IN')}</strong>
+                  <strong className="shrink-0 text-[var(--primary)]">₹{p.totalRevenue?.toLocaleString('en-IN')}</strong>
                 </div>
               ))}
             </div>
